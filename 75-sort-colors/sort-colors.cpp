@@ -1,9 +1,24 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        for(int i =0;i<nums.size();i++){
-            cout << nums[i]<<" ";
+        int n=nums.size();
+        int start=0;
+        int mid=0;
+        int end=n-1;
+
+        while(mid<=end){
+                if(nums[mid]==0){
+                swap(nums[mid],nums[start]);
+                mid++;
+                start++;
+                }
+                else if(nums[mid]==1){
+                mid++;
+                }
+                else{
+                swap(nums[mid],nums[end]);
+                end--;
+                }
+            }
         }
-    }
 };
