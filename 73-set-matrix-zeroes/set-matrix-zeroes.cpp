@@ -1,6 +1,7 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
+        //not optimised solution as per description but ya short and acceptable
         int m = matrix.size();
         int n = matrix[0].size();
         vector<bool>firstrow (m,false);
