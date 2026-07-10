@@ -17,19 +17,19 @@ public:
             len++;
             curr = curr->next;
         }
-        if(len == n){
-            ListNode* temp=head;
-            head = head->next;
-            delete temp;
-            return head;
-        }
+        if(len == n) return head->next;
+        //     ListNode* temp=head;
+        //     head = head->next;
+        //     delete temp;
+        //     return head;
+        // }
         curr = head;
         for(int i=1;i<len-n;i++){
             curr = curr->next;
         }
-        ListNode* temp = curr->next;
+        // ListNode* temp = curr->next;
         curr->next = curr->next->next;
-        delete temp;
+        // delete temp;
         return head;
     }
 };
