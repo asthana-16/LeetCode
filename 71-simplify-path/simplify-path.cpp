@@ -1,27 +1,48 @@
 class Solution {
 public:
     string simplifyPath(string path) {
-        int n = path.size();
-        vector<string> st;
-        string result = "";
-        int i=0;
-        while(i<n){
-            while(i<n && path[i]== '/') i++;
-            string temp ="";
-            while(i<n && path[i]!='/'){
-                temp += path[i];
-                i++;
-            }
-            if(temp == ".."){
-                if(!st.empty()) st.pop_back();
+        // int n = path.size();
+        // vector<string> st;
+        // string result = "";
+        // int i=0;
+        // while(i<n){
+        //     while(i<n && path[i]== '/') i++;
+        //     string temp ="";
+        //     while(i<n && path[i]!='/'){
+        //         temp += path[i];
+        //         i++;
+        //     }
+        //     if(temp == ".."){
+        //         if(!st.empty()) st.pop_back();
+        //         continue;
+        //     }
+        //     if(temp == "." || temp =="") continue;
+        //     else st.push_back(temp);
+        // }
+        // for(string s: st){
+        //     result += "/" +s;
+        // }
+        // return result.empty() ? "/" : result;
+        
+        //using stringstream
+        vector<string>st;
+        string token;
+        stringstream ss(path);
+        while(getline(ss, token, '/')){
+            if (token == "" || token == ".")
                 continue;
+            if (token == "..") {
+                if (!st.empty())
+                    st.pop_back();
             }
-            if(temp == "." || temp =="") continue;
-            else st.push_back(temp);
+            else {
+                st.push_back(token);
+            }
         }
-        for(string s: st){
-            result += "/" +s;
+        string ans = "";
+        for (string &dir : st) {
+            ans += "/" + dir;
         }
-        return result.empty() ? "/" : result;
+        return ans.empty() ? "/" : ans;
     }
 };
