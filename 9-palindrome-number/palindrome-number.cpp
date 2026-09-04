@@ -1,23 +1,16 @@
 class Solution {
 public:
     bool isPalindrome(int x) {
-        if(x<0){
-            return false;
-        }
-        int org=x;
-        int ans=0;
+        int org,rem;
+        long long rev=0;
+        org=x;
+        if(x<0) return false;
         while(x!=0){
-            int digit = x%10;
-            if(ans > INT_MAX/10 || ans < INT_MIN/10){
-                return false;
-            }
-            ans=(ans*10)+digit;
+            rem=x%10;
+            rev=rev*10+rem;
             x=x/10;
         }
-        if(org==ans){
-            return true;
-        }else{
-            return false;
-        }
+        if(rev==org) return true;
+        else return false;
     }
 };
